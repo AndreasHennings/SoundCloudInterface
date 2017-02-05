@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MmePlayer</title>
+    <link rel="stylesheet" href="res/css/styles.css">
+    <link rel="stylesheet" href="res/css/app.css">
+    <link rel="stylesheet" href="res/icons/fontello/css/mme-player-icons.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="title"><i class="icon icon-headphones"></i>MmePlayer</h1>
+        <div class="searchbar">
+            <input type="text" id="input"/>
+        </div>
+    </header>
+    <div class="decal"></div>
+    <content>
+        <div id="playlist" class="playlist">
+            <ul class="tracklist scroll-list" id="pl">
+            </ul>
+        </div>
+        <div id="searchresults" class="searchresults">
+            <ul class="resultlist scroll-list" id="rl">
+            </ul>
+        </div>
+    </content>
+    <script type="text/template" id="resultlist-entry">
+        <li class="entry" 
+        position="<%= position %>" 
+        streamid="<%= id %>" 
+        style="background-image:url('<%= user.avatar_url %>')">
+            <div class="overlay">
+                <span class="rating"><i class="icon-heart"></i><%= likes_count %></span>
+                <span class="add-to-playlist-button"><i class="icon-plus-circled"></i></span>
+                <span class="soundcloud-link"><a href="<%= permalink_url %>"><i class="icon-soundcloud"></i></a></span>
+                <div class="meta">
+                    <span class="label artist"><%= user.username %></span>
+                    <span class="label title"><%= title %></span>
+                </div>
+                <span class="duration"><%= duration %></span>
+            </div>
+        </li>
+    </script>
+    <script type="text/template" id="playlist-entry">
+        <li class="entry" position="<%= position %>" streamid="<%= id %>">
+            <img class="thumbnail" src="<%= user.avatar_url %>" />
+            <span class="label artist"><%= user.username %></span>
+            <span class="label title"><%= title %></span>
+            <span class="button pause hidden"><i class="icon-pause"></i></span>
+            <span class="button play hidden"><i class="icon-play"></i></span>
+        </li>
+    </script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/EventPublisher.js"></script>
+    <script src="js/src/MmePlayer.js"></script>
+    <script src="js/src/SearchController.js"></script>
+    <script src="js/src/Resultlist.js"></script>
+    <script src="js/src/Playlist.js"></script>
+    <script src="js/src/SoundCloudBridge.js"></script>
+    <script src="js/src/SoundCloudPlayer.js"></script>
+    <script>
+    App.MmePlayer.init();
+    </script>
+</body>
+
+</html>
